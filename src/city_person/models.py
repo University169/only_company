@@ -14,3 +14,11 @@ class Person(models.Model):
 
     def __str__(self):
         return self.name
+
+class Event(models.Model):
+    name = models.CharField("Event name", max_length=200)
+    start_date = models.DateTimeField(auto_now_add=False)
+    end_date = models.DateTimeField(auto_now_add=False)
+
+    def __str__(self):
+        return self.name
