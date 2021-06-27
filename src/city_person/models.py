@@ -13,4 +13,4 @@ class Person(models.Model):
     city = models.ForeignKey(City, on_delete=models.SET_NULL, null=True, related_name='persons')
 
     def __str__(self):
-        return str(self.id) + ' Name: ' + self.name
+        return self.name

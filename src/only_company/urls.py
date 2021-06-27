@@ -21,7 +21,8 @@ from city_person import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.show_persons),
+    path('', views.show_persons, name='home'),
+    path('cities/', views.show_cities, name='cities'),
 ]
 
 if settings.DEBUG:
