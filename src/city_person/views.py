@@ -9,5 +9,5 @@ def show_persons(request):
 
 
 def show_cities(request):
-    cities = City.objects.all()
+    cities = City.objects.all().prefetch_related('persons')
     return render(request, "city_person/cities_list.html", {'cities': cities})
