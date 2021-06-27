@@ -7,6 +7,7 @@
       <th scope="col">id</th>
       <th scope="col">Событие</th>
       <th scope="col">Начало</th>
+      <th scope="col">Продолжительность</th>
       <th scope="col">Окончание</th>
     </tr>
   </thead>
@@ -17,6 +18,7 @@
                 <th scope="row">{{ event.id }}</th>
                 <td>{{ event.name }}</td>
                 <td>{{ event.start_date }}</td>
+                <td>{{ event.duration_time }}</td>
                 <td>{{ event.end_date }}</td>
             </tr>
         {% endfor %}

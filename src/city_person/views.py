@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from .models import City, Person, Event
 
-from django.db.models import Count
+from django.db.models import Count, F
 
 from django.core.paginator import Paginator
 
@@ -21,7 +21,7 @@ def show_biggest(request):
     return render(request, "city_person/biggest_cities.html", {'biggest_cities': biggest_cities[:5]})
 
 def event_list(request):
-    events_list = Event.objects.all().order_by('id')
+    events_list = Event.objects.annotate(duration_time=F('end_date')-F('start_date')).order_by('duration_time')
     paginator = Paginator(events_list, 3)  # 3 события на каждой странице
     page_number = request.GET.get('page')
     events = paginator.get_page(page_number)
