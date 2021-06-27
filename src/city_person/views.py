@@ -1,8 +1,8 @@
-from django.views.generic.list import ListView
+from django.shortcuts import render
 
 from .models import City, Person
 
-class PersonsView(ListView):
-    model = Person
-    template_name = 'city_person/home.html'
-    context_object_name = 'persons'
+
+def show_persons(request):
+    persons = Person.objects.all()
+    return render(request, "city_person/home.html", {'persons': persons})
