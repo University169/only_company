@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from django.views.generic.list import ListView
 
-# Create your views here.
+from .models import City, Person
+
+class PersonsView(ListView):
+    model = Person
+    template_name = 'city_person/home.html'
+    context_object_name = 'persons'
