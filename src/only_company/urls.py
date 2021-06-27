@@ -25,6 +25,7 @@ urlpatterns = [
     path('cities/', views.show_cities, name='cities'),
     path('biggest/', views.show_biggest, name='biggest'),
     path('events/', views.event_list, name='events'),
+    path('selcity/', views.select_city, name='selcity'),
 ]
 
 if settings.DEBUG:

@@ -26,3 +26,11 @@ def event_list(request):
     page_number = request.GET.get('page')
     events = paginator.get_page(page_number)
     return render(request, 'city_person/event_list.html', {'events': events})
+
+def select_city(request):
+    selcities=None
+    if request.GET.get('search'):
+        search = request.GET.get('search')
+        selcities = City.objects.all().filter(name=search)
+
+    return render(request, 'city_person/select_city.html', {'selcities': selcities})
