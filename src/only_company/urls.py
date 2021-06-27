@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.show_persons, name='home'),
     path('cities/', views.show_cities, name='cities'),
+    path('biggest/', views.show_biggest, name='biggest'),
 ]
 
 if settings.DEBUG:
