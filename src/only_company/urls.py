@@ -20,10 +20,11 @@ from django.conf import settings
 from city_person import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin'),
     path('', views.show_persons, name='home'),
     path('cities/', views.show_cities, name='cities'),
     path('biggest/', views.show_biggest, name='biggest'),
+    path('events/', views.event_list, name='events'),
 ]
 
 if settings.DEBUG:
