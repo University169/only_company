@@ -15,5 +15,5 @@ def show_cities(request):
     return render(request, "city_person/cities_list.html", {'cities': cities})
 
 def show_biggest(request):
-    biggest_cities = City.objects.annotate(num_persons=Count('persons')).order_by('-num_persons')
+    biggest_cities = City.objects.prefetch_related('persons').annotate(num_persons=Count('persons')).order_by('-num_persons')
     return render(request, "city_person/biggest_cities.html", {'biggest_cities': biggest_cities[:5]})
