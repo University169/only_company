@@ -2,6 +2,8 @@ from django.shortcuts import render
 
 from .models import City, Person
 
+from django.db.models import Count
+
 
 def show_persons(request):
     persons = Person.objects.select_related('city')
@@ -13,8 +15,5 @@ def show_cities(request):
     return render(request, "city_person/cities_list.html", {'cities': cities})
 
 def show_biggest(request):
-    biggest_cities = City.objects.all().prefetch_related('persons')
-    # посчитать количество людей в каждом городе
-    # data = [('Moscow', 31, [persons]), ('Kaliningrad',153, [persons]), ('SPb',82, [persons])]
-    # Вывести 5 первых элементов: id - Город - Кол-во жителей - Сами жители
-    return render(request, "city_person/biggest_cities.html", {'biggest_cities': biggest_cities})
+    biggest_cities = City.objects.annotate(num_persons=Count('persons')).order_by('-num_persons')
+    return render(request, "city_person/biggest_cities.html", {'biggest_cities': biggest_cities[:5]})
